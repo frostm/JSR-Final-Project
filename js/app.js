@@ -72,29 +72,28 @@ connectToDarksky();
 
 function connectToSpotify () {
 
-	var napsterRequest = new XMLHttpRequest();
+	var spotifyRequest = new XMLHttpRequest();
 	
-napsterRequest.open('GET', 'https://accounts.spotify.com/api/token');
-napsterRequest.send();
+spotifyRequest.open('GET', 'https://api.spotify.com/v1/albums/0TnOYISbd1XYRBk9myaseg/tracks');
+spotifyRequest.send();
 
 function errorHandler() {
   console.log('something went wrong');
 }
 
 function napsterContent () {
-	var musicData = JSON.parse(napsterRequest.responseText);
+	var musicData = JSON.parse(spotifyRequest.responseText);
 	console.log (musicData);
 
 }
 
 
-napsterRequest.onerror = errorHandler;
-napsterRequest.onload = napsterContent;
+spotifyRequest.onerror = errorHandler;
+spotifyRequest.onload = napsterContent;
 
 }
 
-connectToNapster();
-
+connectToSpotify();
 
 
 

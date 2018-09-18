@@ -17,6 +17,9 @@ var client_id = '4b2c0e196691470592e7d96f7d4de59d'; // Your client id
 var client_secret = '06c41e9a2db04dacadf10e6e7e6f7577'; // Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
+// import SpotifyWebApi from ‘spotify-web-api-js’;
+// const spotifyApi = new SpotifyWebApi();
+
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
@@ -46,7 +49,8 @@ app.get('/login', function(req, res) {
   res.cookie(stateKey, state);
 
   // your application requests authorization
-  var scope = 'user-read-private user-read-email';
+  /* auth-server/authorization_code/app.js */
+  var scope = 'user-read-private user-read-email user-read-playback-state';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
@@ -67,7 +71,7 @@ app.get('/callback', function(req, res) {
   var storedState = req.cookies ? req.cookies[stateKey] : null;
 
   if (state === null || state !== storedState) {
-    res.redirect('/#' +
+    res.redirect('http://localhost:3000/#' +
       querystring.stringify({
         error: 'state_mismatch'
       }));
@@ -104,7 +108,7 @@ app.get('/callback', function(req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect('/#' +
+        res.redirect('http://localhost:3000/#' +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token
@@ -145,3 +149,4 @@ app.get('/refresh_token', function(req, res) {
 
 console.log('Listening on 8888');
 app.listen(8888);
+
