@@ -4,7 +4,8 @@ import './App.css';
 import SpotifyWebApi from 'spotify-web-api-js';
 const spotifyApi = new SpotifyWebApi();
 
-// get Elvis' albums, using Promises through Promise, Q or when
+
+
 
 class App extends Component {
 
@@ -45,14 +46,8 @@ class App extends Component {
   }
 
 
-  getElvis(){
-    spotifyApi.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE')
-      .then(function(data) {
-    console.log('Artist albums', data);
-  }, function(err) {
-    console.error(err);
-  });
-  }
+
+
 
 
 
@@ -60,8 +55,13 @@ class App extends Component {
 
 
   render() {
+
+
     return (
+
       <div className="App">
+
+
         <a href='http://localhost:8888' > Login to Spotify </a>
         <div>
           Now Playing: { this.state.nowPlaying.name }
@@ -70,7 +70,7 @@ class App extends Component {
           <img alt="" src={this.state.nowPlaying.albumArt} style={{ height: 150 }}/>
         </div>
         { this.state.loggedIn &&
-          <button onClick={() => this.getNowPlaying()}>
+          <button className="btn-primary" onClick={() => this.getNowPlaying()}>
             Check Now Playing
           </button>
         }
