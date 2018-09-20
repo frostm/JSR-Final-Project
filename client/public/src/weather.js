@@ -14,8 +14,7 @@ String.prototype.toTitleCase = function () {
 window.onload = function() {
 
 function handleClick() {
-  userInput = locationInput.value;
-  userInput.toTitleCase();
+  userInput = locationInput.value.toTitleCase();
   console.log(userInput);
 
 
@@ -72,7 +71,12 @@ function handleClick() {
 					var weatherData = JSON.parse(darkskyRequest.responseText);
 					console.log(weatherData);
 
-					mainHeadline.innerText = `Currently in ` + userInput + ` it's ` + weatherData.currently.apparentTemperature + `°F`;
+
+					if (weatherData.currently.apparentTemperature > 50) {
+						$("body").addClass("hot");
+					}
+
+					mainHeadline.innerText = `Currently in ` + userInput + ` it's ` + Math.round(weatherData.currently.apparentTemperature) + `°F`;
 				}
 
 				darkskyRequest.onerror = errorHandler;
