@@ -41,3 +41,5 @@ In order to view the app in your browser you must run npm start.
 
 	$ cd JSR-Final-Project/client
     $ npm start
+
+Then, open `http://localhost:3000` in a browser.
