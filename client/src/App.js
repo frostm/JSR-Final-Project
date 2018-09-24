@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-
 import SpotifyWebApi from 'spotify-web-api-js';
+
 const spotifyApi = new SpotifyWebApi();
 
 
+
+
 class App extends Component {
+
 
   constructor(){
     super();
@@ -16,7 +19,7 @@ class App extends Component {
     }
     this.state = {
       loggedIn: token ? true : false,
-      nowPlaying: { name: 'Not Checked', albumArt: '' }
+      nowPlaying: { name: '', albumArt: '', listenNow: '', }
     }
   }
   getHashParams() {
@@ -31,19 +34,52 @@ class App extends Component {
     return hashParams;
   }
 
-  getNowPlaying(){
-    spotifyApi.getMyCurrentPlaybackState()
+  getPlaylist(uri){
+    spotifyApi.getPlaylist(uri)
       .then((response) => {
+        console.log(response);
         this.setState({
           nowPlaying: { 
-              name: response.item.name, 
-              albumArt: response.item.album.images[0].url
+              name: response.name, 
+              albumArt: response.images[0].url,
+              listenNow: response.external_urls.spotify,
             }
         });
       })
   }
 
 
+
+
+ifStatement() {
+let temp = document.getElementById('temp').innerHTML;
+let tempInt = parseInt(temp, 10);
+
+if ( tempInt >= 70 ) {
+  this.getPlaylist('37i9dQZF1DWYzpSJHStHHx');
+
+} else if ( tempInt >= 50 && tempInt < 70 ) {
+  this.getPlaylist('37i9dQZF1DX6ziVCJnEm59');
+
+} else if ( tempInt >= 30 && tempInt < 50 ) {
+  this.getPlaylist('37i9dQZF1DWUNIrSzKgQbP');
+
+} else if ( tempInt < 30 ) {
+  this.getPlaylist('37i9dQZF1DX4H7FFUM2osB');
+
+} else {
+  console.log('error');
+}
+
+}
+
+
+
+
+
+
+
+// onClick={() => this.getAlbum()}
 
 
 
@@ -57,17 +93,23 @@ class App extends Component {
       <div className="App">
 
 
-        <a href='http://localhost:8888' > Login to Spotify </a>
-        <div>
-          Now Playing: { this.state.nowPlaying.name }
+        <a className="btn-primary" id="login" href='http://localhost:8888' > Login to Spotify </a>
+
+
+                <div>
+          <img alt="" src={this.state.nowPlaying.albumArt} style={{ height: 250 }}/>
         </div>
-        <div>
-          <img alt="" src={this.state.nowPlaying.albumArt} style={{ height: 150 }}/>
-        </div>
+        <p>{this.state.nowPlaying.name}</p>
+
+        <a target="_blank" alt='play' className="play-button hidden" href={this.state.nowPlaying.listenNow}>Play now <img className="play-button-image" src="img/play-button.png"/></a>
+
+
         { this.state.loggedIn &&
-          <button className="btn-primary" onClick={() => this.getNowPlaying()}>
-            Check Now Playing
-          </button>
+
+            <button className="btn-primary logged-in hidden tune-btn"  onClick={() => this.ifStatement()}>
+              Let's set the mood
+            </button>
+
         }
       </div>
     );

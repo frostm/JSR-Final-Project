@@ -1,10 +1,15 @@
+body {
+	font-family: 'Rubik', sans-serif;
+}
+
+
 div.input-group-append {
 	margin-top: 0;
 	margin-bottom: 0;
 }
 
 .input-group {
-	width: 60%;
+	width: 50%;
     margin: 0 auto;
 }
 
@@ -13,8 +18,88 @@ button#btn.btn.btn-success {
 }
 
 h1 {
+	font-family: 'Rubik', sans-serif;
 	text-align: center;
 	margin: 50px auto;
+	font-size: 3rem;
+	color: #353b48;
+}
+
+p {
+	font-family: 'Rubik', sans-serif;
+	text-align: center;
+	font-size: 1.5rem;
+	color: #353b48;
 }
 
 
+.hidden {
+	display: none;
+}
+
+input, button  {
+	font-family: 'Rubik', sans-serif;
+}
+
+.logged-in {
+	padding: 15px;
+	border-radius: 5px;
+}
+
+#login {
+	padding: 15px;
+	border-radius: 5px;
+}
+
+button {
+	margin: 0px!important;
+}
+
+.play-button {
+	color: #273c75;
+	font-family: 'Rubik', sans-serif;
+	font-weight: 700;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	padding-bottom: 10px;
+}
+
+.play-button:hover {
+	color: #273c75;
+
+}
+
+.play-button-image {
+	display: block;
+	height: 50px;
+	width: auto;
+	margin: 0 auto;
+	padding-bottom: 20px;
+}
+
+.bg-primary {
+	background-color: #273c75;
+}
+
+.btn-primary {
+	background-color: #273c75;
+	border: 0px;
+}
+
+.btn-primary:hover {
+	background-color: #192a56;
+}
+
+.bg-primary {
+	background-color: #7f8fa6!important;
+}
+
+button#btn.btn.btn-success {
+	background-color: #273c75;
+	border: 0px;
+}
+
+button#btn.btn.btn-success:hover {
+	background-color: #192a56;
+	border: 0px;
+}

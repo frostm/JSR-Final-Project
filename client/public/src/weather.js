@@ -1,5 +1,7 @@
-var mainHeadline = document.querySelector('.main-content h1');
-var locationInput = document.getElementById('location-input');
+var mainHeadline = document.querySelector('.main-content h1'),
+ 	locationInput = document.getElementById('location-input'),
+ 	weatherIcon = document.getElementsByClassName('weather-icon')[0];
+ 	forecastDescription = document.querySelector('.main-content p');
 
 let userInput = "";
 
@@ -11,9 +13,23 @@ String.prototype.toTitleCase = function () {
 };
 
 
+
 window.onload = function() {
 
+
+if ( $( '.logged-in' ).length){
+    $( '#input-field' ).removeClass('hidden');
+}
+
+if ( $( '.logged-in' ).length){
+    $( '#login' ).addClass('hidden');
+}
+
+
 function handleClick() {
+	$( 'intro' ).addClass( 'hidden' );
+	$( '.tune-btn' ).removeClass( 'hidden' );
+
   userInput = locationInput.value.toTitleCase();
   console.log(userInput);
 
@@ -31,7 +47,7 @@ function handleClick() {
 		geoRequest.send();
 
 		function errorHandler() {
-		  console.log('something went wrong');
+			console.log('something went wrong');
 		}
 
 		function geoContent () {
@@ -64,19 +80,23 @@ function handleClick() {
 				darkskyRequest.send();
 
 				function errorHandler() {
-			  		console.log('something went wrong');
+					console.log('something went wrong');
 				}
 
 				function weatherContent () {
 					var weatherData = JSON.parse(darkskyRequest.responseText);
 					console.log(weatherData);
+					let currentTemp = Math.round(weatherData.currently.apparentTemperature);
+
 
 
 					if (weatherData.currently.apparentTemperature > 50) {
 						$("body").addClass("hot");
 					}
 
-					mainHeadline.innerText = `Currently in ` + userInput + ` it's ` + Math.round(weatherData.currently.apparentTemperature) + `°F`;
+					mainHeadline.innerHTML = `Currently in ` + userInput + ` it's ` + `<span id="temp">` + currentTemp + `</span>`  + `°F`;
+					forecastDescription.innerHTML = weatherData.currently.summary;
+					// weatherIcon.innerHTML = weatherData.currently.icon;
 				}
 
 				darkskyRequest.onerror = errorHandler;
@@ -103,7 +123,25 @@ function handleClick() {
 
 	}
 
-btn.addEventListener('click', handleClick);
+btn.addEventListener('click', handleClick)
+
+
+$('input').keydown(function(event){ 
+    var keyCode = (event.keyCode ? event.keyCode : event.which);   
+    if (keyCode == 13) {
+        $('#btn').trigger('click');
+    }
+});
+
+
+setTimeout(function() {
+	$( '.tune-btn' ).click( function() {
+		$( '.play-button' ).removeClass('hidden');
+	})
+}, 2000);
+
+
+
 
 }
 

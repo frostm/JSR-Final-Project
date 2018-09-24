@@ -14,6 +14,7 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700" rel="stylesheet">
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -30,13 +31,16 @@
     </nav>
 
     <section class="main-content">
-      <h1></h1>
+      <h1 class="intro">Set the Mood</h1>
+      <h1 class="weather-header"></h1>
+      <p></p>
+      <div class="weather-icon"></div>
 
 
-      <div class="input-group">
+      <div class="input-group hidden" id="input-field">
         <input type="text" class="form-control" id="location-input" placeholder="Enter your city" aria-label="" aria-describedby="basic-addon1">
           <div class="input-group-append">
-            <button class="btn btn-success" id = "btn" type="button">Launch!</button>
+            <button class="btn btn-success" id = "btn" type="button">Go</button>
           </div>
       </div>
 
@@ -62,3 +66,4 @@
     <script src="src/weather.js"></script>
   </body>
 </html>
+
