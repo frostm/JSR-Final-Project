@@ -29,10 +29,8 @@ if ( $( '.logged-in' ).length){
 function handleClick() {
 	$( 'intro' ).addClass( 'hidden' );
 
-	setTimeout(function() {
-	$( '.tune-btn' ).removeClass( 'hidden' );
-	$( '.App' ).removeClass( 'hidden' );
-	}, 2000);
+
+	$ ( '.loader' ).removeClass( 'hidden' );
 
   userInput = locationInput.value.toTitleCase();
   console.log(userInput);
@@ -91,12 +89,15 @@ function handleClick() {
 					var weatherData = JSON.parse(darkskyRequest.responseText);
 					console.log(weatherData);
 					let currentTemp = Math.round(weatherData.currently.apparentTemperature);
+					$ ( '.loader' ).addClass( 'hidden' );
+					$( '.tune-btn' ).removeClass( 'hidden' );
+					$( '.app-content' ).removeClass( 'hidden' );
 
 				
 
 
 					mainHeadline.innerHTML = `Currently in ` + userInput + ` it's ` + `<span id="temp">` + currentTemp + `</span>`  + `°F`;
-					forecastDescription.innerHTML = weatherData.currently.summary;
+					forecastDescription.innerHTML = weatherData.hourly.summary;
 					// weatherIcon.innerHTML = weatherData.currently.icon;
 				}
 

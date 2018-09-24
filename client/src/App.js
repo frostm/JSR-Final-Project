@@ -40,6 +40,7 @@ class App extends Component {
         console.log(response);
         this.setState({
           nowPlaying: { 
+              description: response.description,
               name: response.name, 
               albumArt: response.images[0].url,
               listenNow: response.external_urls.spotify,
@@ -56,21 +57,23 @@ ifStatement() {
 let temp = document.getElementById('temp').innerHTML;
 let tempInt = parseInt(temp, 10);
 
-if ( tempInt >= 70 ) {
-  this.getPlaylist('37i9dQZF1DWYzpSJHStHHx');
+  setTimeout(function() { //Start the timer
+    if ( tempInt >= 70 ) {
+      this.getPlaylist('37i9dQZF1DWYzpSJHStHHx');
 
-} else if ( tempInt >= 50 && tempInt < 70 ) {
-  this.getPlaylist('37i9dQZF1DX6ziVCJnEm59');
+    } else if ( tempInt >= 50 && tempInt < 70 ) {
+      this.getPlaylist('37i9dQZF1DX6ziVCJnEm59');
 
-} else if ( tempInt >= 30 && tempInt < 50 ) {
-  this.getPlaylist('37i9dQZF1DWUNIrSzKgQbP');
+    } else if ( tempInt >= 30 && tempInt < 50 ) {
+      this.getPlaylist('37i9dQZF1DWUNIrSzKgQbP');
 
-} else if ( tempInt < 30 ) {
-  this.getPlaylist('37i9dQZF1DX4H7FFUM2osB');
+    } else if ( tempInt < 30 ) {
+      this.getPlaylist('37i9dQZF1DX4H7FFUM2osB');
 
-} else {
-  console.log('error');
-}
+    } else {
+      console.log('error');
+    }
+ }.bind(this), 500)
 
 }
 
@@ -91,27 +94,30 @@ if ( tempInt >= 70 ) {
 
     return (
 
-      <div className="App hidden">
+      <div className="App">
 
 
         <a className="btn-primary" id="login" href='http://localhost:8888' > Login to Spotify </a>
 
+        <div className="app-content hidden">
 
-        <div class="image-wrapper hidden">
-          <img alt="" src={this.state.nowPlaying.albumArt} style={{ height: 250 }}/>
-        </div>
-        <p>{this.state.nowPlaying.name}</p>
+          <div className="image-wrapper hidden">
+            <p className="description"><b>Mood:</b> {this.state.nowPlaying.description}</p>
+            <img alt="" src={this.state.nowPlaying.albumArt} style={{ height: 250 }}/>
+          </div>
+          <p>{this.state.nowPlaying.name}</p>
 
-        <a target="_blank" alt='play' className="play-button hidden" href={this.state.nowPlaying.listenNow}>Play now <img className="play-button-image" src="img/play-button.png"/></a>
+          <a target="_blank" alt="" className="play-button hidden" href={this.state.nowPlaying.listenNow}>Play now <img alt="" className="play-button-image" src="img/play-button.png"/></a>
 
 
-        { this.state.loggedIn &&
+          { this.state.loggedIn &&
 
-            <button className="btn-primary logged-in hidden tune-btn"  onClick={() => this.ifStatement()}>
-              Let's set the mood
-            </button>
+              <button className="btn-primary logged-in hidden tune-btn"  onClick={() => this.ifStatement()}>
+                Let's set the mood
+              </button>
+            }
 
-        }
+            </div>
       </div>
     );
   }
