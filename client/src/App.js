@@ -43,6 +43,7 @@ class App extends Component {
               name: response.name, 
               albumArt: response.images[0].url,
               listenNow: response.external_urls.spotify,
+
             }
         });
       })
@@ -90,13 +91,13 @@ if ( tempInt >= 70 ) {
 
     return (
 
-      <div className="App">
+      <div className="App hidden">
 
 
         <a className="btn-primary" id="login" href='http://localhost:8888' > Login to Spotify </a>
 
 
-                <div>
+        <div class="image-wrapper hidden">
           <img alt="" src={this.state.nowPlaying.albumArt} style={{ height: 250 }}/>
         </div>
         <p>{this.state.nowPlaying.name}</p>

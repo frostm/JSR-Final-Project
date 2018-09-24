@@ -103,3 +103,19 @@ button#btn.btn.btn-success:hover {
 	background-color: #192a56;
 	border: 0px;
 }
+
+#root {
+	margin: 0px;
+}
+
+.App {
+	background-color: #dcdde1;
+	padding-bottom: 100px;
+	padding-top: 30px;
+	margin: 0px;
+
+}
+
+.input-group {
+	margin-bottom: 50px;
+}

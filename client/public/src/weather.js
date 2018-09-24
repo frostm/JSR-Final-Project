@@ -28,7 +28,11 @@ if ( $( '.logged-in' ).length){
 
 function handleClick() {
 	$( 'intro' ).addClass( 'hidden' );
+
+	setTimeout(function() {
 	$( '.tune-btn' ).removeClass( 'hidden' );
+	$( '.App' ).removeClass( 'hidden' );
+	}, 2000);
 
   userInput = locationInput.value.toTitleCase();
   console.log(userInput);
@@ -88,11 +92,8 @@ function handleClick() {
 					console.log(weatherData);
 					let currentTemp = Math.round(weatherData.currently.apparentTemperature);
 
+				
 
-
-					if (weatherData.currently.apparentTemperature > 50) {
-						$("body").addClass("hot");
-					}
 
 					mainHeadline.innerHTML = `Currently in ` + userInput + ` it's ` + `<span id="temp">` + currentTemp + `</span>`  + `°F`;
 					forecastDescription.innerHTML = weatherData.currently.summary;
@@ -137,6 +138,7 @@ $('input').keydown(function(event){
 setTimeout(function() {
 	$( '.tune-btn' ).click( function() {
 		$( '.play-button' ).removeClass('hidden');
+		$( '.image-wrapper' ).removeClass('hidden');
 	})
 }, 2000);
 
