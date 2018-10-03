@@ -102,7 +102,7 @@ let tempInt = parseInt(temp, 10);
         <div className="app-content hidden">
 
           <div className="image-wrapper hidden">
-            <p className="description">{this.state.nowPlaying.description}</p>
+            <p className="description"><b>Mood:</b> {this.state.nowPlaying.description}</p>
             <img alt="" src={this.state.nowPlaying.albumArt} style={{ height: 250 }}/>
           </div>
           <p>{this.state.nowPlaying.name}</p>

@@ -29,7 +29,7 @@ if ( $( '.logged-in' ).length){
 function handleClick() {
 	$( 'intro' ).addClass( 'hidden' );
 	$ ( '.loader' ).removeClass( 'hidden' );
-	$ ( '.intro' ).text('Getting the mood...');
+	$ ( '.intro' ).text('Setting the mood...');
 
   userInput = locationInput.value.toTitleCase();
   console.log(userInput);
